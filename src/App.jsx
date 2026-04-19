@@ -7,7 +7,7 @@ function App() {
   const [inpValue, setInpValue] = useState("")
   const [cards, setCards] = useState([])
   const [timerid, setTimerId] = useState(null)
-
+  const [load,setLoad] = useState(true)
 
 
 
@@ -27,20 +27,42 @@ function App() {
     clearTimeout(timerid)
     setTimerId(
       setTimeout(() => {
+        setLoad(true)
         fetch(`https://dummyjson.com/products/search?q=${inpValue}`)
           .then(res => res.json())
-          .then(res => setCards(res.products));
+          .then(res => {
+            setCards(res.products)
+            setLoad(false)
+          });
       }, 1000))
   }, [inpValue])
 
 
 
-
+if (load) {
+  return (
+    <div className='loader'>
+        <div class="spinner">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+  )
+}
 
 
 
   return (
     <>
+      
       <div className='parent'>
         <div className="parent__container _container">
           <div className="cardsCategory">
