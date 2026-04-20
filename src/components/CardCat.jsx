@@ -8,17 +8,7 @@ export default function CardCat({ inpValue, setInpValue}) {
                 {/* </form> */}
 
             </div>
-            <div className="categories">
-                <button className="catBtn">Cosmetic</button>
-                <button className="catBtn">Cosmetic</button>
-                <button className="catBtn">Cosmetic</button>
-                <button className="catBtn">Cosmetic</button>
-                <button className="catBtn">Cosmetic</button>
-                <button className="catBtn">Cosmetic</button>
-                <button className="catBtn">Cosmetic</button>
-                <button className="catBtn">Cosmetic</button>
-                <button className="catBtn">Cosmetic</button>
-            </div>
+
         </>
     )
 }
