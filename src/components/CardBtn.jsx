@@ -1,11 +1,7 @@
-export default function CardBtn({ title, getCats}) {
+export default function CardBtn({ title,url,selectCategoryUrl}) {
     return (
         <>
-            <button 
-            className="catBtn"
-             onClick={() => 
-                getCats(`https://dummyjson.com/products/category/${title}`)}
-             >
+            <button className="catBtn" onClick={() => selectCategoryUrl(url)} >
                 {title}
             </button>
         </>

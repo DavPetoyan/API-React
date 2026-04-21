@@ -3,13 +3,14 @@ import './App.css'
 import CardCat from './components/CardCat'
 import Card from './components/Card'
 import CardBtn from './components/CardBtn'
+import Categories from './components/Categories'
 
 function App() {
   const [inpValue, setInpValue] = useState("")
   const [cards, setCards] = useState([])
   const [timerid, setTimerId] = useState(null)
   const [load, setLoad] = useState(true)
-
+  const [categoryUrl, setCategoryUrl] = useState(null)
 
   useEffect(() => {
     fetch('https://dummyjson.com/products')
@@ -32,15 +33,22 @@ function App() {
           .then(res => {
             setCards(res.products)
             setLoad(false)
+            if (inpValue !== "") {
+              setCategoryUrl(null)
+            }
           });
       }, 1000))
   }, [inpValue])
 
-  function getCat(url) {
-      fetch(url)
-        .then(res => res.json())
-        .then(res => setCards(res.products));
-  }
+
+
+  useEffect(() => {
+    fetch(categoryUrl)
+      .then(res => res.json())
+      .then(res =>{
+        setCards(res.products)
+      })
+  },[categoryUrl])
 
   if (load) {
     return (
@@ -74,13 +82,7 @@ function App() {
               setInpValue={setInpValue}
             />
             <div className="categories">
-              {[...new Set(cards.map(e => e.category))].map((cat, i) => (
-                <CardBtn
-                  key={i}
-                  title={cat}
-                  getCats={getCat}
-                />
-              ))}
+              <Categories selectCategoryUrl={(newCategory) => setCategoryUrl(newCategory)} />
             </div>
           </div>
           <div className="cardsCont">
