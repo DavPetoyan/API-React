@@ -6,7 +6,7 @@ function Categories({selectCategoryUrl}) {
     useEffect(() => {
         fetch('https://dummyjson.com/products/categories')
             .then(res => res.json())
-            .then(res => {setList(res)});
+            .then(res => setList(res));
     })
 
     return (

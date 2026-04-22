@@ -33,9 +33,7 @@ function App() {
           .then(res => {
             setCards(res.products)
             setLoad(false)
-            if (inpValue !== "") {
-              setCategoryUrl(null)
-            }
+            setCategoryUrl(null)
           });
       }, 1000))
   }, [inpValue])
@@ -49,6 +47,11 @@ function App() {
         setCards(res.products)
       })
   },[categoryUrl])
+
+
+
+
+
 
   if (load) {
     return (
